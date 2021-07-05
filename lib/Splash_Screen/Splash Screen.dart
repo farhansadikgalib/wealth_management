@@ -12,6 +12,12 @@ class SplashScreenPage extends StatefulWidget {
 }
 
 class _SplashScreenPageState extends State<SplashScreenPage> {
+
+
+
+
+
+
   int checkInt = 0;
 
 
@@ -45,13 +51,18 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
             context,
             MaterialPageRoute(builder: (context) => MyAppHomePage()),
             (route) => false));
+
+
+
+
+
+
+
+
+
   }
 
-  // void initTimer()async{
-  //
-  //   if(await connec)
-  //
-  // }
+
 
   @override
   Widget build(BuildContext context) {

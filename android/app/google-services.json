@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "572605011101",
+    "project_id": "carry-forward-b7316",
+    "storage_bucket": "carry-forward-b7316.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:572605011101:android:ef74f83f4ab070c9ccf074",
+        "android_client_info": {
+          "package_name": "com.farhansadikgalib.carryforward.wealth_management"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "572605011101-hsnlem0q7ucrt66vib2tvbh6b3m2lals.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.farhansadikgalib.carryforward.wealth_management",
+            "certificate_hash": "b6d4838075909c2a3a4c2b9481c76f54099dbd02"
+          }
+        },
+        {
+          "client_id": "572605011101-cn97dh86bvigehvrs48c9rtvnjmg05j6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBFb-gCQ_zQ5l29ItQvAAEySGZUkbKf8I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "572605011101-cn97dh86bvigehvrs48c9rtvnjmg05j6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

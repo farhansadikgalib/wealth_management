@@ -1,6 +1,11 @@
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:wealth_management/Push%20Notification/pushNotification.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+
+import '../main.dart';
 
 class MyAppHomePage extends StatefulWidget {
   @override
@@ -13,25 +18,22 @@ const String flutterUrl = "https://carryforward.bizzware.net/";
 
 class _MyAppState extends State<MyAppHomePage> {
 
-  Future<bool> _onWillPop() async {
-    return (await showDialog(
-      context: context,
-      builder: (context) => new AlertDialog(
-        title: new Text('Are you sure?'),
-        content: new Text('Do you want to exit an App'),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(false),
-            child: new Text('No'),
-          ),
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(true),
-            child: new Text('Yes'),
-          ),
-        ],
-      ),
-    )) ?? false;
+   late FirebaseNotifcation firebase;
+
+  handleAsync() async {
+    await firebase.initialize();
+
+    String? token = await firebase.getToken();
+    print("Firebase token : $token");
   }
+
+  @override
+  void initState() {
+    super.initState();
+    firebase = FirebaseNotifcation();
+    handleAsync();
+  }
+
 
 
 
@@ -61,12 +63,26 @@ class _MyAppState extends State<MyAppHomePage> {
   }
 
 
-  @override
-  void initState() {
-    super.initState();
 
-  }
-
+Future<bool> _onWillPop() async {
+  return (await showDialog(
+    context: context,
+    builder: (context) => new AlertDialog(
+      title: new Text('Are you sure?'),
+      content: new Text('Do you want to exit an App'),
+      actions: <Widget>[
+        TextButton(
+          onPressed: () => Navigator.of(context).pop(false),
+          child: new Text('No'),
+        ),
+        TextButton(
+          onPressed: () => Navigator.of(context).pop(true),
+          child: new Text('Yes'),
+        ),
+      ],
+    ),
+  )) ?? false;
+}
 
 
   @override
