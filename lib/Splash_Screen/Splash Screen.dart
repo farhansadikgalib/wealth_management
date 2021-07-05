@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:liquid_progress_indicator_ns/liquid_progress_indicator.dart';
+import 'package:wealth_management/Check_Connection/check_internet.dart';
 import 'package:wealth_management/Home_Page/HomePage.dart';
 
 class SplashScreenPage extends StatefulWidget {
@@ -11,16 +12,46 @@ class SplashScreenPage extends StatefulWidget {
 }
 
 class _SplashScreenPageState extends State<SplashScreenPage> {
+  int checkInt = 0;
+
+
   @override
   void initState() {
     super.initState();
+    Future<int> a = CheckInternet().checkInternetConnection();
+    a.then((value) {
+      if (value == 0) {
+        setState(() {
+          checkInt = 0;
+        });
+        print('No internet connect');
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text('No internet connection!'),
+        ));
+      } else {
+        setState(() {
+          checkInt = 1;
+        });
+        print('Internet connected');
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text('Connected to the internet'),
+        ));
+      }
+    });
+
     Timer(
         Duration(seconds: 5),
         () => Navigator.pushAndRemoveUntil(
             context,
-            MaterialPageRoute(builder: (context) => HomePage()),
+            MaterialPageRoute(builder: (context) => MyAppHomePage()),
             (route) => false));
   }
+
+  // void initTimer()async{
+  //
+  //   if(await connec)
+  //
+  // }
 
   @override
   Widget build(BuildContext context) {
