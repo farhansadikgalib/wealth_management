@@ -14,10 +14,6 @@ class SplashScreenPage extends StatefulWidget {
 class _SplashScreenPageState extends State<SplashScreenPage> {
 
 
-
-
-
-
   int checkInt = 0;
 
 
@@ -49,14 +45,8 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
         Duration(seconds: 5),
         () => Navigator.pushAndRemoveUntil(
             context,
-            MaterialPageRoute(builder: (context) => WebExampleTwo(url: 'http://carryforward.bizzware.net/')),
+            MaterialPageRoute(builder: (context) => HomePage(url: 'http://carryforward.bizzware.net/')),
             (route) => false));
-
-
-
-
-
-
 
 
 

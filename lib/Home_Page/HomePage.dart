@@ -4,16 +4,16 @@ import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:wealth_management/Push%20Notification/pushNotification.dart';
 
-class WebExampleTwo extends StatefulWidget {
+class HomePage extends StatefulWidget {
   final String url;
 
-  WebExampleTwo({Key? key, required this.url}) : super(key: key);
+  HomePage({Key? key, required this.url}) : super(key: key);
 
   @override
-  _WebExampleTwoState createState() => _WebExampleTwoState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _WebExampleTwoState extends State<WebExampleTwo> {
+class _HomePageState extends State<HomePage> {
   FirebaseNotifcation? firebase;
 
   handleAsync() async {
