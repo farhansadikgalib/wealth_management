@@ -8,7 +8,7 @@
 
     <application
         android:name=".Application"
-        android:label="Carry Forward"
+        android:label="carryforward"
         android:networkSecurityConfig="@xml/network_security_config"
         android:icon="@mipmap/ic_launcher">
         <activity

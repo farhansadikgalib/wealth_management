@@ -49,7 +49,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
         Duration(seconds: 5),
         () => Navigator.pushAndRemoveUntil(
             context,
-            MaterialPageRoute(builder: (context) => MyAppHomePage()),
+            MaterialPageRoute(builder: (context) => WebExampleTwo(url: 'http://carryforward.bizzware.net/')),
             (route) => false));
 
 
@@ -86,8 +86,8 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
           SizedBox(
             height: 100,
           ),
-          Text("CARRY FORWARD",
-              style: TextStyle(fontSize: 14, fontFamily: "Poppins",color: Colors.white60)),
+          Text("Carry Forward",
+              style: TextStyle(fontSize: 14, fontFamily: "Poppins",color: Colors.yellow[800])),
           SizedBox(
             height: 10,
           ),
