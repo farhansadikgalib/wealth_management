@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:liquid_progress_indicator_ns/liquid_progress_indicator.dart';
+import 'package:wealth_management/Check_Connection/No%20Internet.dart';
 import 'package:wealth_management/Check_Connection/check_internet.dart';
 import 'package:wealth_management/Home_Page/HomePage.dart';
 
@@ -16,7 +17,6 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
 
   int checkInt = 0;
 
-
   @override
   void initState() {
     super.initState();
@@ -27,30 +27,45 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
           checkInt = 0;
         });
         print('No internet connect');
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text('No internet connection!'),
-        ));
+        Timer(
+            Duration(seconds: 5),
+                () => Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => No_Internet_Connection()),
+                    (route) => false));
+
+        // ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        //   content: Text('No internet connection!'),
+        // ));
       } else {
         setState(() {
           checkInt = 1;
         });
         print('Internet connected');
+        Timer(
+            Duration(seconds: 5),
+                () => Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => HomePage(url: 'http://carryforward.bizzware.net/')),
+                    (route) => false));
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text('Connected to the internet'),
         ));
       }
     });
 
-    Timer(
-        Duration(seconds: 5),
-        () => Navigator.pushAndRemoveUntil(
-            context,
-            MaterialPageRoute(builder: (context) => HomePage(url: 'http://carryforward.bizzware.net/')),
-            (route) => false));
+
+
+
+
+
+
+
 
 
 
   }
+
 
 
 
