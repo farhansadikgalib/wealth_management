@@ -1,7 +1,10 @@
 import 'dart:io';
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:wealth_management/Check_Connection/No%20Internet.dart';
+import 'package:wealth_management/Check_Connection/check_internet.dart';
 import 'package:wealth_management/Push%20Notification/pushNotification.dart';
 
 class HomePage extends StatefulWidget {
@@ -15,12 +18,19 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   FirebaseNotifcation? firebase;
+  int checkInt = 0;
+  late ConnectivityResult previous;
+
+
 
   handleAsync() async {
     await firebase!.initialize();
     String? token = await firebase!.getToken();
     print("Firebase token : $token");
   }
+
+
+
 
   @override
   void initState() {
@@ -39,6 +49,26 @@ class _HomePageState extends State<HomePage> {
         }
       },
     );
+
+
+    Connectivity().onConnectivityChanged.listen((ConnectivityResult connresult){
+      if(connresult == ConnectivityResult.none){
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => No_Internet_Connection()), (route) => false );
+      }else if(previous == ConnectivityResult.none){
+        // internet conn
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => No_Internet_Connection()), (route) => false );
+      }
+
+      previous = connresult;
+    });
+
+
+
+
   }
 
   Future<bool> _onWillPop() async {
@@ -69,7 +99,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   InAppWebViewController? _webViewController;
-  double progress = 0;
+  // double progress = 0;
   String url = '';
 
   final GlobalKey webViewKey = GlobalKey();
@@ -155,14 +185,14 @@ class _HomePageState extends State<HomePage> {
           child: Container(
             child: Column(
               children: [
-                progress < 1.0
-                    ? LinearProgressIndicator(
-                        value: progress,
-                        backgroundColor: Colors.white,
-                        valueColor:
-                            AlwaysStoppedAnimation<Color>(Colors.yellow[800]!),
-                      )
-                    : Center(),
+                // progress < 1.0
+                //     ? LinearProgressIndicator(
+                //         value: progress,
+                //         backgroundColor: Colors.white,
+                //         valueColor:
+                //             AlwaysStoppedAnimation<Color>(Colors.yellow[800]!),
+                //       )
+                //     : Center(),
                 Expanded(
                   child: InAppWebView(
                     key: webViewKey,
@@ -202,7 +232,7 @@ class _HomePageState extends State<HomePage> {
                         pullToRefreshController.endRefreshing();
                       }
                       setState(() {
-                        this.progress = progress / 100;
+                        // this.progress = progress / 100;
                         urlController.text = this.url;
                       });
                     },
